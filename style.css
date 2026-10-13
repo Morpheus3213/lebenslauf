@@ -1,9 +1,9 @@
 /* ==========================================================================
-   Design-Variablen
-   ========================================================================== */
+    Design-Variablen
+    ========================================================================== */
 /*
-  Hier definieren wir Farben, Schriftarten und Abstände, die später mehrfach genutzt werden.
-  So kann das Design später einfacher geändert werden.
+   Hier definieren wir Farben, Schriftarten und Abstände, die später mehrfach genutzt werden.
+   So kann das Design später einfacher geändert werden.
 */
 :root {
   --ink:        #1b1b18;
@@ -37,11 +37,30 @@ body {
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 a { color: inherit; text-decoration: none; }
 
+img { max-width: 100%; height: auto; }
+
 h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 1000;
+  background: var(--navy);
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 0 0 6px 0;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
 
 /* Visible focus ring for keyboard users */
 a:focus-visible, button:focus-visible {
@@ -55,8 +74,8 @@ a:focus-visible, button:focus-visible {
 }
 
 /* ==========================================================================
-   Layout
-   ========================================================================== */
+    Layout
+    ========================================================================== */
 /*
   Diese Regeln sorgen dafür, dass die Seite in zwei Spalten angezeigt wird:
   links die Sidebar und rechts der Hauptinhalt.
@@ -76,8 +95,8 @@ a:focus-visible, button:focus-visible {
 .site-footer { grid-area: footer; }
 
 /* ==========================================================================
-   Sidebar / Profilkarte
-   ========================================================================== */
+    Sidebar / Profilkarte
+    ========================================================================== */
 /*
   Die Sidebar ist das linke Menü mit Namen, Foto, Kontakten und Navigation.
 */
@@ -190,8 +209,8 @@ a:focus-visible, button:focus-visible {
 .section-nav a:focus-visible::after { width: 100%; }
 
 /* ==========================================================================
-   Inhaltsbereiche
-   ========================================================================== */
+    Inhaltsbereiche
+    ========================================================================== */
 /*
   Die einzelnen Abschnitte wie "Über mich" und "Berufserfahrung" bekommen Abstand und Titel.
 */
@@ -216,8 +235,8 @@ a:focus-visible, button:focus-visible {
 }
 
 /* ==========================================================================
-   Zeitstrahl (Berufserfahrung / Ausbildung)
-   ========================================================================== */
+    Zeitstrahl (Berufserfahrung / Ausbildung)
+    ========================================================================== */
 /*
   Der Zeitstrahl zeigt die einzelnen Einträge als Liste mit Datum und Beschreibung.
 */
@@ -311,8 +330,8 @@ a:focus-visible, button:focus-visible {
 }
 
 /* ==========================================================================
-   Kompetenz-Karten
-   ========================================================================== */
+    Kompetenz-Karten
+    ========================================================================== */
 /*
   Die Karten mit Fähigkeiten werden als Raster angeordnet und reagieren auf Mausbewegung.
 */
@@ -376,8 +395,8 @@ a:focus-visible, button:focus-visible {
 }
 
 /* ==========================================================================
-   Sprachen
-   ========================================================================== */
+    Sprachen
+    ========================================================================== */
 /*
   Hier stehen die Regeln für die Liste, in der Sprachkenntnisse angezeigt werden.
 */
@@ -400,8 +419,8 @@ a:focus-visible, button:focus-visible {
 .lang-level { color: var(--ink-soft); font-size: 0.92rem; text-align: right; }
 
 /* ==========================================================================
-   Persönliches
-   ========================================================================== */
+    Persönliches
+    ========================================================================== */
 /*
   Diese Stile gelten für persönliche Notizen und Extras auf der Seite.
 */
@@ -431,8 +450,8 @@ a:focus-visible, button:focus-visible {
 }
 
 /* ==========================================================================
-   Fußzeile
-   ========================================================================== */
+    Fußzeile
+    ========================================================================== */
 /*
   Die Fußzeile erscheint ganz unten auf der Seite und ist meist für Copyright oder Kontaktinfos.
 */
@@ -444,8 +463,8 @@ a:focus-visible, button:focus-visible {
 }
 
 /* ==========================================================================
-   Responsive
-   ========================================================================== */
+    Responsive
+    ========================================================================== */
 @media (max-width: 900px) {
   .layout {
     grid-template-columns: 1fr;
@@ -462,25 +481,115 @@ a:focus-visible, button:focus-visible {
     padding: 2.5rem 1.5rem;
   }
 
-  .section-nav { flex-direction: row; flex-wrap: wrap; gap: 0.9rem; }
+  .section-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.55rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .section-nav a {
+    width: auto;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.03);
+    color: #dfe3ea;
+  }
+
+  .section-nav a::after { display: none; }
+
+  .contact-link {
+    width: 100%;
+    padding: 0.45rem 0.1rem;
+  }
 
   .content { padding: 3rem 1.5rem 1rem; }
-
   .site-footer { padding: 1.5rem; }
-
   .lang-list li { flex-direction: column; gap: 0.15rem; }
   .lang-level { text-align: left; }
 }
 
-@media (max-width: 520px) {
-  .portrait { width: 100px; height: 100px; }
-  .sidebar h1 { font-size: 1.35rem; }
+@media (max-width: 600px) {
+  body { font-size: 15px; }
+
+  .badge { text-align: left; }
+  .portrait {
+    width: 96px;
+    height: 96px;
+    margin: 0 0 1rem;
+  }
+
+  .sidebar h1 { font-size: 1.5rem; }
+  .role { font-size: 0.8rem; }
+
+  .contact {
+    gap: 0.15rem;
+    padding: 1rem 0;
+  }
+
+  .contact-link {
+    font-size: 0.88rem;
+    justify-content: flex-start;
+  }
+
+  .content { padding: 2.5rem 1rem 1rem; }
+  .block { margin-bottom: 2.5rem; }
   .block h2 { font-size: 1.5rem; }
+
+  .timeline { border-left-width: 1px; }
+  .entry {
+    padding: 0 0 1.5rem 1.25rem;
+  }
+  .entry::before {
+    left: -5px;
+    width: 9px;
+    height: 9px;
+  }
+  .entry-date {
+    font-size: 0.7rem;
+    letter-spacing: 0;
+  }
+  .entry-body h3 { font-size: 1rem; }
+  .entry-org, .entry-desc, .entry-list { font-size: 0.88rem; }
+
+  .skill-grid { grid-template-columns: 1fr; }
+  .skill-card { padding: 1rem 1rem 1.1rem; }
+  .tag-list li { font-size: 0.75rem; }
+
+  .personal-list {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .personal-list li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .site-footer {
+    padding: 1.1rem 1rem 2rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .sidebar {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .section-nav {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .block h2 { font-size: 1.35rem; }
+  .lang-list li { padding: 0.6rem 0; }
 }
 
 /* ==========================================================================
-   Print
-   ========================================================================== */
+    Print
+    ========================================================================== */
 @media print {
   @page { margin: 1.5cm; }
 
