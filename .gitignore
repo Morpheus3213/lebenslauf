@@ -1,0 +1,9 @@
+# Windows-Systemdateien
+Thumbs.db
+desktop.ini
+
+# macOS (falls jemand anderes mitarbeitet)
+.DS_Store
+
+# Editor-Einstellungen
+.vscode/
